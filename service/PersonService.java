@@ -4,6 +4,7 @@ import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,4 +32,9 @@ public class PersonService {
     public Optional<Person> getPersonById(UUID id) {
         return personDao.selectPersonById(id);
     }
+
+    public ResponseEntity<String> deletePerson(UUID id) {
+        return personDao.deletePersonById(id);
+    }
+
 }
