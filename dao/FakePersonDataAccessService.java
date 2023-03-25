@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Person;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -30,8 +31,14 @@ public class FakePersonDataAccessService implements PersonDao {
     }
 
     @Override
-    public int deletePersonByID(UUID id) {
-        return 0;
+    public ResponseEntity<String> deletePersonById(UUID id) {
+        Optional<Person> person = selectPersonById(id);
+        if (person.isPresent()) {
+            DB.remove(person.get());
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @Override
