@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import com.example.demo.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -17,7 +18,7 @@ public interface PersonDao {
 
     List<Person> selectAllPeople();
 
-    Stream<Person> selectPersonById(UUID id);
+   Optional<Person> selectPersonById(UUID id);
     int deletePersonByID(UUID id);
 
     int updatePersonById(UUID id, Person person);

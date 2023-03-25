@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -22,12 +23,10 @@ public class FakePersonDataAccessService implements PersonDao {
     }
 
     @Override
-    public Stream<Person> selectPersonById(UUID id) {
+    public Optional <Person> selectPersonById(UUID id) {
         return DB.stream()
                 .filter(person -> person.getId().equals(id))
-                .findFirst()
-                .map(Stream::of)
-                .orElseGet(Stream::empty);
+                .findFirst();
     }
 
     @Override
